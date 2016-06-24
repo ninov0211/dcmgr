@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZdoclineZdocCreateDlg" widgetVar="ZdoclineZdocCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateZdoclineZdocTitle}" closeOnEscape="true">
+
+            <h:form id="ZdoclineZdocCreateForm">
+
+                <h:panelGroup id="display" rendered="#{zdoclineZdocController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateZdoclineZdocLabel_zdoclineZdocPK_zdoclinecollectionZdocLineId}" for="zdoclineZdocPK_zdoclinecollectionZdocLineId" />
+                        <h:panelGroup>
+                            <p:inputText id="zdoclineZdocPK_zdoclinecollectionZdocLineId" value="#{zdoclineZdocController.selected.zdoclineZdocPK.zdoclinecollectionZdocLineId}" title="#{myBundle.CreateZdoclineZdocTitle_zdoclineZdocPK_zdoclinecollectionZdocLineId}" required="true" requiredMessage="#{myBundle.CreateZdoclineZdocRequiredMessage_zdoclineZdocPK_zdoclinecollectionZdocLineId}"/>
+                            <p:tooltip for="zdoclineZdocPK_zdoclinecollectionZdocLineId" value="#{zdoclineZdocController.getComponentMessages('zdoclineZdocPK_zdoclinecollectionZdocLineId', myBundle.CreateZdoclineZdocHelpText_zdoclineZdocPK_zdoclinecollectionZdocLineId)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.CreateZdoclineZdocLabel_zdoclineZdocPK_zdoccollectionZdocid}" for="zdoclineZdocPK_zdoccollectionZdocid" />
+                        <h:panelGroup>
+                            <p:inputText id="zdoclineZdocPK_zdoccollectionZdocid" value="#{zdoclineZdocController.selected.zdoclineZdocPK.zdoccollectionZdocid}" title="#{myBundle.CreateZdoclineZdocTitle_zdoclineZdocPK_zdoccollectionZdocid}" required="true" requiredMessage="#{myBundle.CreateZdoclineZdocRequiredMessage_zdoclineZdocPK_zdoccollectionZdocid}"/>
+                            <p:tooltip for="zdoclineZdocPK_zdoccollectionZdocid" value="#{zdoclineZdocController.getComponentMessages('zdoclineZdocPK_zdoccollectionZdocid', myBundle.CreateZdoclineZdocHelpText_zdoclineZdocPK_zdoccollectionZdocid)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.CreateZdoclineZdocLabel_zdocline}" for="zdocline" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="zdocline" value="#{zdoclineZdocController.selected.zdocline}" required="true" requiredMessage="#{myBundle.CreateZdoclineZdocRequiredMessage_zdocline}" converter="zdoclineConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{zdoclineController.items}"
+                                               var="zdoclineItem"
+                                               itemValue="#{zdoclineItem}"
+                                               itemLabel="#{zdoclineItem.zdocLineId.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="zdocline" value="#{zdoclineZdocController.getComponentMessages('zdocline', myBundle.CreateZdoclineZdocHelpText_zdocline)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zdoclineZdocController.saveNew}" value="#{myBundle.Save}" update="display,:ZdoclineZdocListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZdoclineZdocCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZdoclineZdocCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

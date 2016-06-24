@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ZuserEditDlg" widgetVar="ZuserEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditZuserTitle}" closeOnEscape="true">
+
+            <h:form id="ZuserEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{zuserController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditZuserLabel_zuserid}" for="zuserid" />
+                        <h:panelGroup>
+                            <h:outputText id="zuserid" value="#{zuserController.selected.zuserid}" />
+                            <p:tooltip for="zuserid" value="#{zuserController.getComponentMessages('zuserid', myBundle.EditZuserHelpText_zuserid)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZuserLabel_leveladmid}" for="leveladmid" />
+                        <h:panelGroup>
+                            <p:inputText id="leveladmid" value="#{zuserController.selected.leveladmid}" title="#{myBundle.EditZuserTitle_leveladmid}"/>
+                            <p:tooltip for="leveladmid" value="#{zuserController.getComponentMessages('leveladmid', myBundle.EditZuserHelpText_leveladmid)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZuserLabel_levelsysid}" for="levelsysid" />
+                        <h:panelGroup>
+                            <p:inputText id="levelsysid" value="#{zuserController.selected.levelsysid}" title="#{myBundle.EditZuserTitle_levelsysid}"/>
+                            <p:tooltip for="levelsysid" value="#{zuserController.getComponentMessages('levelsysid', myBundle.EditZuserHelpText_levelsysid)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZuserLabel_useremail}" for="useremail" />
+                        <h:panelGroup>
+                            <p:inputText id="useremail" value="#{zuserController.selected.useremail}" title="#{myBundle.EditZuserTitle_useremail}" size="255" maxlength="255"/>
+                            <p:tooltip for="useremail" value="#{zuserController.getComponentMessages('useremail', myBundle.EditZuserHelpText_useremail)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZuserLabel_username}" for="username" />
+                        <h:panelGroup>
+                            <p:inputText id="username" value="#{zuserController.selected.username}" title="#{myBundle.EditZuserTitle_username}" size="255" maxlength="255"/>
+                            <p:tooltip for="username" value="#{zuserController.getComponentMessages('username', myBundle.EditZuserHelpText_username)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZuserLabel_userpass}" for="userpass" />
+                        <h:panelGroup>
+                            <p:inputText id="userpass" value="#{zuserController.selected.userpass}" title="#{myBundle.EditZuserTitle_userpass}" size="255" maxlength="255"/>
+                            <p:tooltip for="userpass" value="#{zuserController.getComponentMessages('userpass', myBundle.EditZuserHelpText_userpass)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZuserLabel_zactiveuser}" for="zactiveuser" />
+                        <h:panelGroup>
+                            <p:inputText id="zactiveuser" value="#{zuserController.selected.zactiveuser}" title="#{myBundle.EditZuserTitle_zactiveuser}"/>
+                            <p:tooltip for="zactiveuser" value="#{zuserController.getComponentMessages('zactiveuser', myBundle.EditZuserHelpText_zactiveuser)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZuserLabel_zdeptZdepid}" for="zdeptZdepid" />
+                        <h:panelGroup>
+                            <p:inputText id="zdeptZdepid" value="#{zuserController.selected.zdeptZdepid}" title="#{myBundle.EditZuserTitle_zdeptZdepid}"/>
+                            <p:tooltip for="zdeptZdepid" value="#{zuserController.getComponentMessages('zdeptZdepid', myBundle.EditZuserHelpText_zdeptZdepid)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZuserLabel_zdeptid1}" for="zdeptid1" />
+                        <h:panelGroup>
+                            <p:inputText id="zdeptid1" value="#{zuserController.selected.zdeptid1}" title="#{myBundle.EditZuserTitle_zdeptid1}"/>
+                            <p:tooltip for="zdeptid1" value="#{zuserController.getComponentMessages('zdeptid1', myBundle.EditZuserHelpText_zdeptid1)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZuserLabel_zuserleveladmZuserLevelAdmId}" for="zuserleveladmZuserLevelAdmId" />
+                        <h:panelGroup>
+                            <p:inputText id="zuserleveladmZuserLevelAdmId" value="#{zuserController.selected.zuserleveladmZuserLevelAdmId}" title="#{myBundle.EditZuserTitle_zuserleveladmZuserLevelAdmId}"/>
+                            <p:tooltip for="zuserleveladmZuserLevelAdmId" value="#{zuserController.getComponentMessages('zuserleveladmZuserLevelAdmId', myBundle.EditZuserHelpText_zuserleveladmZuserLevelAdmId)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZuserLabel_zuserlevelsysZuserLevelSysId}" for="zuserlevelsysZuserLevelSysId" />
+                        <h:panelGroup>
+                            <p:inputText id="zuserlevelsysZuserLevelSysId" value="#{zuserController.selected.zuserlevelsysZuserLevelSysId}" title="#{myBundle.EditZuserTitle_zuserlevelsysZuserLevelSysId}"/>
+                            <p:tooltip for="zuserlevelsysZuserLevelSysId" value="#{zuserController.getComponentMessages('zuserlevelsysZuserLevelSysId', myBundle.EditZuserHelpText_zuserlevelsysZuserLevelSysId)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zuserController.save}" value="#{myBundle.Save}" update="display,:ZuserListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZuserEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZuserEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

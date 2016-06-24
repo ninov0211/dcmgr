@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ZdocrencanadistEditDlg" widgetVar="ZdocrencanadistEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditZdocrencanadistTitle}" closeOnEscape="true">
+
+            <h:form id="ZdocrencanadistEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{zdocrencanadistController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditZdocrencanadistLabel_zdocrencanadistid}" for="zdocrencanadistid" />
+                        <h:panelGroup>
+                            <h:outputText id="zdocrencanadistid" value="#{zdocrencanadistController.selected.zdocrencanadistid}" />
+                            <p:tooltip for="zdocrencanadistid" value="#{zdocrencanadistController.getComponentMessages('zdocrencanadistid', myBundle.EditZdocrencanadistHelpText_zdocrencanadistid)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZdocrencanadistLabel_zdocid}" for="zdocid" />
+                        <h:panelGroup>
+                            <p:inputText id="zdocid" value="#{zdocrencanadistController.selected.zdocid}" title="#{myBundle.EditZdocrencanadistTitle_zdocid}"/>
+                            <p:tooltip for="zdocid" value="#{zdocrencanadistController.getComponentMessages('zdocid', myBundle.EditZdocrencanadistHelpText_zdocid)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZdocrencanadistLabel_zuserId}" for="zuserId" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="zuserId" value="#{zdocrencanadistController.selected.zuserId}"  converter="zuserConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{zuserController.items}"
+                                               var="zuserIdItem"
+                                               itemValue="#{zuserIdItem}"
+                                               itemLabel="#{zuserIdItem.username.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="zuserId" value="#{zdocrencanadistController.getComponentMessages('zuserId', myBundle.EditZdocrencanadistHelpText_zuserId)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zdocrencanadistController.save}" value="#{myBundle.Save}" update="display,:ZdocrencanadistListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZdocrencanadistEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZdocrencanadistEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ZdocperubahanEditDlg" widgetVar="ZdocperubahanEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditZdocperubahanTitle}" closeOnEscape="true">
+
+            <h:form id="ZdocperubahanEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{zdocperubahanController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditZdocperubahanLabel_zdocperubahanid}" for="zdocperubahanid" />
+                        <h:panelGroup>
+                            <h:outputText id="zdocperubahanid" value="#{zdocperubahanController.selected.zdocperubahanid}" />
+                            <p:tooltip for="zdocperubahanid" value="#{zdocperubahanController.getComponentMessages('zdocperubahanid', myBundle.EditZdocperubahanHelpText_zdocperubahanid)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZdocperubahanLabel_menjadi}" for="menjadi" />
+                        <h:panelGroup>
+                            <p:inputText id="menjadi" value="#{zdocperubahanController.selected.menjadi}" title="#{myBundle.EditZdocperubahanTitle_menjadi}" size="255" maxlength="255"/>
+                            <p:tooltip for="menjadi" value="#{zdocperubahanController.getComponentMessages('menjadi', myBundle.EditZdocperubahanHelpText_menjadi)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZdocperubahanLabel_name}" for="name" />
+                        <h:panelGroup>
+                            <p:inputText id="name" value="#{zdocperubahanController.selected.name}" title="#{myBundle.EditZdocperubahanTitle_name}" size="255" maxlength="255"/>
+                            <p:tooltip for="name" value="#{zdocperubahanController.getComponentMessages('name', myBundle.EditZdocperubahanHelpText_name)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZdocperubahanLabel_yangdiubah}" for="yangdiubah" />
+                        <h:panelGroup>
+                            <p:inputText id="yangdiubah" value="#{zdocperubahanController.selected.yangdiubah}" title="#{myBundle.EditZdocperubahanTitle_yangdiubah}" size="255" maxlength="255"/>
+                            <p:tooltip for="yangdiubah" value="#{zdocperubahanController.getComponentMessages('yangdiubah', myBundle.EditZdocperubahanHelpText_yangdiubah)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZdocperubahanLabel_zdocid}" for="zdocid" />
+                        <h:panelGroup>
+                            <p:inputText id="zdocid" value="#{zdocperubahanController.selected.zdocid}" title="#{myBundle.EditZdocperubahanTitle_zdocid}"/>
+                            <p:tooltip for="zdocid" value="#{zdocperubahanController.getComponentMessages('zdocid', myBundle.EditZdocperubahanHelpText_zdocid)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zdocperubahanController.save}" value="#{myBundle.Save}" update="display,:ZdocperubahanListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZdocperubahanEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZdocperubahanEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

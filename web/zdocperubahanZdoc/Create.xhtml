@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZdocperubahanZdocCreateDlg" widgetVar="ZdocperubahanZdocCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateZdocperubahanZdocTitle}" closeOnEscape="true">
+
+            <h:form id="ZdocperubahanZdocCreateForm">
+
+                <h:panelGroup id="display" rendered="#{zdocperubahanZdocController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateZdocperubahanZdocLabel_zdocperubahanZdocPK_zdoccollectionZdocid}" for="zdocperubahanZdocPK_zdoccollectionZdocid" />
+                        <h:panelGroup>
+                            <p:inputText id="zdocperubahanZdocPK_zdoccollectionZdocid" value="#{zdocperubahanZdocController.selected.zdocperubahanZdocPK.zdoccollectionZdocid}" title="#{myBundle.CreateZdocperubahanZdocTitle_zdocperubahanZdocPK_zdoccollectionZdocid}" required="true" requiredMessage="#{myBundle.CreateZdocperubahanZdocRequiredMessage_zdocperubahanZdocPK_zdoccollectionZdocid}"/>
+                            <p:tooltip for="zdocperubahanZdocPK_zdoccollectionZdocid" value="#{zdocperubahanZdocController.getComponentMessages('zdocperubahanZdocPK_zdoccollectionZdocid', myBundle.CreateZdocperubahanZdocHelpText_zdocperubahanZdocPK_zdoccollectionZdocid)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocperubahanZdocLabel_zdocperubahanZdocPK_zdocperubahancollectionZdocperubahanid}" for="zdocperubahanZdocPK_zdocperubahancollectionZdocperubahanid" />
+                        <h:panelGroup>
+                            <p:inputText id="zdocperubahanZdocPK_zdocperubahancollectionZdocperubahanid" value="#{zdocperubahanZdocController.selected.zdocperubahanZdocPK.zdocperubahancollectionZdocperubahanid}" title="#{myBundle.CreateZdocperubahanZdocTitle_zdocperubahanZdocPK_zdocperubahancollectionZdocperubahanid}" required="true" requiredMessage="#{myBundle.CreateZdocperubahanZdocRequiredMessage_zdocperubahanZdocPK_zdocperubahancollectionZdocperubahanid}"/>
+                            <p:tooltip for="zdocperubahanZdocPK_zdocperubahancollectionZdocperubahanid" value="#{zdocperubahanZdocController.getComponentMessages('zdocperubahanZdocPK_zdocperubahancollectionZdocperubahanid', myBundle.CreateZdocperubahanZdocHelpText_zdocperubahanZdocPK_zdocperubahancollectionZdocperubahanid)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocperubahanZdocLabel_zdocperubahan}" for="zdocperubahan" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="zdocperubahan" value="#{zdocperubahanZdocController.selected.zdocperubahan}" required="true" requiredMessage="#{myBundle.CreateZdocperubahanZdocRequiredMessage_zdocperubahan}" converter="zdocperubahanConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{zdocperubahanController.items}"
+                                               var="zdocperubahanItem"
+                                               itemValue="#{zdocperubahanItem}"
+                                               itemLabel="#{zdocperubahanItem.name.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="zdocperubahan" value="#{zdocperubahanZdocController.getComponentMessages('zdocperubahan', myBundle.CreateZdocperubahanZdocHelpText_zdocperubahan)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zdocperubahanZdocController.saveNew}" value="#{myBundle.Save}" update="display,:ZdocperubahanZdocListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZdocperubahanZdocCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZdocperubahanZdocCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

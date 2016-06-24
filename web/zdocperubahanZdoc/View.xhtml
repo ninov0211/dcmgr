@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZdocperubahanZdocViewDlg" widgetVar="ZdocperubahanZdocViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewZdocperubahanZdocTitle}" closeOnEscape="true">
+
+            <h:form id="ZdocperubahanZdocViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{zdocperubahanZdocController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewZdocperubahanZdocLabel_zdocperubahanZdocPK_zdoccollectionZdocid}"/>
+                        <h:outputText value="#{zdocperubahanZdocController.selected.zdocperubahanZdocPK.zdoccollectionZdocid}" title="#{myBundle.ViewZdocperubahanZdocTitle_zdocperubahanZdocPK_zdoccollectionZdocid}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdocperubahanZdocLabel_zdocperubahanZdocPK_zdocperubahancollectionZdocperubahanid}"/>
+                        <h:outputText value="#{zdocperubahanZdocController.selected.zdocperubahanZdocPK.zdocperubahancollectionZdocperubahanid}" title="#{myBundle.ViewZdocperubahanZdocTitle_zdocperubahanZdocPK_zdocperubahancollectionZdocperubahanid}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdocperubahanZdocLabel_zdocperubahan}"/>
+                        <h:outputText value="#{zdocperubahanZdocController.selected.zdocperubahan.name}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('ZdocperubahanZdocViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

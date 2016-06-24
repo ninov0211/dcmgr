@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZdocdistribusiViewDlg" widgetVar="ZdocdistribusiViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewZdocdistribusiTitle}" closeOnEscape="true">
+
+            <h:form id="ZdocdistribusiViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{zdocdistribusiController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewZdocdistribusiLabel_zdocdistribusiid}"/>
+                        <h:outputText value="#{zdocdistribusiController.selected.zdocdistribusiid}" title="#{myBundle.ViewZdocdistribusiTitle_zdocdistribusiid}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdocdistribusiLabel_name}"/>
+                        <h:outputText value="#{zdocdistribusiController.selected.name}" title="#{myBundle.ViewZdocdistribusiTitle_name}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdocdistribusiLabel_tgldistribusi}"/>
+                        <h:outputText value="#{zdocdistribusiController.selected.tgldistribusi}" title="#{myBundle.ViewZdocdistribusiTitle_tgldistribusi}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewZdocdistribusiLabel_zaccept}"/>
+                        <h:outputText value="#{zdocdistribusiController.selected.zaccept}" title="#{myBundle.ViewZdocdistribusiTitle_zaccept}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdocdistribusiLabel_zdocid}"/>
+                        <h:outputText value="#{zdocdistribusiController.selected.zdocid}" title="#{myBundle.ViewZdocdistribusiTitle_zdocid}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdocdistribusiLabel_zuserid}"/>
+                        <h:outputText value="#{zdocdistribusiController.selected.zuserid.username}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('ZdocdistribusiViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

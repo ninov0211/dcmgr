@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZprivilageCreateDlg" widgetVar="ZprivilageCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateZprivilageTitle}" closeOnEscape="true">
+
+            <h:form id="ZprivilageCreateForm">
+
+                <h:panelGroup id="display" rendered="#{zprivilageController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateZprivilageLabel_zprivilageid}" for="zprivilageid" />
+                        <h:panelGroup>
+                            <p:inputText id="zprivilageid" value="#{zprivilageController.selected.zprivilageid}" title="#{myBundle.CreateZprivilageTitle_zprivilageid}" required="true" requiredMessage="#{myBundle.CreateZprivilageRequiredMessage_zprivilageid}"/>
+                            <p:tooltip for="zprivilageid" value="#{zprivilageController.getComponentMessages('zprivilageid', myBundle.CreateZprivilageHelpText_zprivilageid)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.CreateZprivilageLabel_createdoc}" for="createdoc" />
+                        <h:panelGroup>
+                            <p:inputText id="createdoc" value="#{zprivilageController.selected.createdoc}" title="#{myBundle.CreateZprivilageTitle_createdoc}"/>
+                            <p:tooltip for="createdoc" value="#{zprivilageController.getComponentMessages('createdoc', myBundle.CreateZprivilageHelpText_createdoc)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.CreateZprivilageLabel_deletedoc}" for="deletedoc" />
+                        <h:panelGroup>
+                            <p:inputText id="deletedoc" value="#{zprivilageController.selected.deletedoc}" title="#{myBundle.CreateZprivilageTitle_deletedoc}"/>
+                            <p:tooltip for="deletedoc" value="#{zprivilageController.getComponentMessages('deletedoc', myBundle.CreateZprivilageHelpText_deletedoc)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.CreateZprivilageLabel_maxprint}" for="maxprint" />
+                        <h:panelGroup>
+                            <p:inputText id="maxprint" value="#{zprivilageController.selected.maxprint}" title="#{myBundle.CreateZprivilageTitle_maxprint}"/>
+                            <p:tooltip for="maxprint" value="#{zprivilageController.getComponentMessages('maxprint', myBundle.CreateZprivilageHelpText_maxprint)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.CreateZprivilageLabel_name}" for="name" />
+                        <h:panelGroup>
+                            <p:inputText id="name" value="#{zprivilageController.selected.name}" title="#{myBundle.CreateZprivilageTitle_name}" size="255" maxlength="255"/>
+                            <p:tooltip for="name" value="#{zprivilageController.getComponentMessages('name', myBundle.CreateZprivilageHelpText_name)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.CreateZprivilageLabel_updatedoc}" for="updatedoc" />
+                        <h:panelGroup>
+                            <p:inputText id="updatedoc" value="#{zprivilageController.selected.updatedoc}" title="#{myBundle.CreateZprivilageTitle_updatedoc}"/>
+                            <p:tooltip for="updatedoc" value="#{zprivilageController.getComponentMessages('updatedoc', myBundle.CreateZprivilageHelpText_updatedoc)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.CreateZprivilageLabel_viewdoc}" for="viewdoc" />
+                        <h:panelGroup>
+                            <p:inputText id="viewdoc" value="#{zprivilageController.selected.viewdoc}" title="#{myBundle.CreateZprivilageTitle_viewdoc}"/>
+                            <p:tooltip for="viewdoc" value="#{zprivilageController.getComponentMessages('viewdoc', myBundle.CreateZprivilageHelpText_viewdoc)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.CreateZprivilageLabel_zprint}" for="zprint" />
+                        <h:panelGroup>
+                            <p:inputText id="zprint" value="#{zprivilageController.selected.zprint}" title="#{myBundle.CreateZprivilageTitle_zprint}"/>
+                            <p:tooltip for="zprint" value="#{zprivilageController.getComponentMessages('zprint', myBundle.CreateZprivilageHelpText_zprint)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.CreateZprivilageLabel_zdoctabelid1}" for="zdoctabelid1" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="zdoctabelid1" value="#{zprivilageController.selected.zdoctabelid1}"  converter="zdoctabelConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{zdoctabelController.items}"
+                                               var="zdoctabelid1Item"
+                                               itemValue="#{zdoctabelid1Item}"
+                                               itemLabel="#{zdoctabelid1Item.zdoctabelid.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="zdoctabelid1" value="#{zprivilageController.getComponentMessages('zdoctabelid1', myBundle.CreateZprivilageHelpText_zdoctabelid1)}"/>
+                        </h:panelGroup>
+
+  
+ 
+                        <p:outputLabel value="#{myBundle.CreateZprivilageLabel_zuserZuserid}" for="zuserZuserid" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="zuserZuserid" value="#{zprivilageController.selected.zuserZuserid}"  converter="zuserConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{zuserController.items}"
+                                               var="zuserZuseridItem"
+                                               itemValue="#{zuserZuseridItem}"
+                                               itemLabel="#{zuserZuseridItem.username.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="zuserZuserid" value="#{zprivilageController.getComponentMessages('zuserZuserid', myBundle.CreateZprivilageHelpText_zuserZuserid)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zprivilageController.saveNew}" value="#{myBundle.Save}" update="display,:ZprivilageListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZprivilageCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZprivilageCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

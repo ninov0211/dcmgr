@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZstatusdocZdocViewDlg" widgetVar="ZstatusdocZdocViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewZstatusdocZdocTitle}" closeOnEscape="true">
+
+            <h:form id="ZstatusdocZdocViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{zstatusdocZdocController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewZstatusdocZdocLabel_zstatusdocZdocPK_zstatusdoccollectionZstatusdocid}"/>
+                        <h:outputText value="#{zstatusdocZdocController.selected.zstatusdocZdocPK.zstatusdoccollectionZstatusdocid}" title="#{myBundle.ViewZstatusdocZdocTitle_zstatusdocZdocPK_zstatusdoccollectionZstatusdocid}"/>
+
+                        <h:outputText value="#{myBundle.ViewZstatusdocZdocLabel_zstatusdocZdocPK_zdoccollectionZdocid}"/>
+                        <h:outputText value="#{zstatusdocZdocController.selected.zstatusdocZdocPK.zdoccollectionZdocid}" title="#{myBundle.ViewZstatusdocZdocTitle_zstatusdocZdocPK_zdoccollectionZdocid}"/>
+
+                        <h:outputText value="#{myBundle.ViewZstatusdocZdocLabel_zstatusdoc}"/>
+                        <h:outputText value="#{zstatusdocZdocController.selected.zstatusdoc.statusdescription}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('ZstatusdocZdocViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

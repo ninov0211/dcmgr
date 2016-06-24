@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZdocZstatusdocCreateDlg" widgetVar="ZdocZstatusdocCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateZdocZstatusdocTitle}" closeOnEscape="true">
+
+            <h:form id="ZdocZstatusdocCreateForm">
+
+                <h:panelGroup id="display" rendered="#{zdocZstatusdocController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateZdocZstatusdocLabel_zdocZstatusdocPK_zstatusdocsZstatusdocid}" for="zdocZstatusdocPK_zstatusdocsZstatusdocid" />
+                        <h:panelGroup>
+                            <p:inputText id="zdocZstatusdocPK_zstatusdocsZstatusdocid" value="#{zdocZstatusdocController.selected.zdocZstatusdocPK.zstatusdocsZstatusdocid}" title="#{myBundle.CreateZdocZstatusdocTitle_zdocZstatusdocPK_zstatusdocsZstatusdocid}" required="true" requiredMessage="#{myBundle.CreateZdocZstatusdocRequiredMessage_zdocZstatusdocPK_zstatusdocsZstatusdocid}"/>
+                            <p:tooltip for="zdocZstatusdocPK_zstatusdocsZstatusdocid" value="#{zdocZstatusdocController.getComponentMessages('zdocZstatusdocPK_zstatusdocsZstatusdocid', myBundle.CreateZdocZstatusdocHelpText_zdocZstatusdocPK_zstatusdocsZstatusdocid)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocZstatusdocLabel_zdocZstatusdocPK_zdocZdocid}" for="zdocZstatusdocPK_zdocZdocid" />
+                        <h:panelGroup>
+                            <p:inputText id="zdocZstatusdocPK_zdocZdocid" value="#{zdocZstatusdocController.selected.zdocZstatusdocPK.zdocZdocid}" title="#{myBundle.CreateZdocZstatusdocTitle_zdocZstatusdocPK_zdocZdocid}" required="true" requiredMessage="#{myBundle.CreateZdocZstatusdocRequiredMessage_zdocZstatusdocPK_zdocZdocid}"/>
+                            <p:tooltip for="zdocZstatusdocPK_zdocZdocid" value="#{zdocZstatusdocController.getComponentMessages('zdocZstatusdocPK_zdocZdocid', myBundle.CreateZdocZstatusdocHelpText_zdocZstatusdocPK_zdocZdocid)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocZstatusdocLabel_zstatusdoc}" for="zstatusdoc" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="zstatusdoc" value="#{zdocZstatusdocController.selected.zstatusdoc}" required="true" requiredMessage="#{myBundle.CreateZdocZstatusdocRequiredMessage_zstatusdoc}" converter="zstatusdocConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{zstatusdocController.items}"
+                                               var="zstatusdocItem"
+                                               itemValue="#{zstatusdocItem}"
+                                               itemLabel="#{zstatusdocItem.statusdescription.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="zstatusdoc" value="#{zdocZstatusdocController.getComponentMessages('zstatusdoc', myBundle.CreateZdocZstatusdocHelpText_zstatusdoc)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zdocZstatusdocController.saveNew}" value="#{myBundle.Save}" update="display,:ZdocZstatusdocListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZdocZstatusdocCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZdocZstatusdocCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ZdoctabelEditDlg" widgetVar="ZdoctabelEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditZdoctabelTitle}" closeOnEscape="true">
+
+            <h:form id="ZdoctabelEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{zdoctabelController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditZdoctabelLabel_zdoctabelid}" for="zdoctabelid" />
+                        <h:panelGroup>
+                            <h:outputText id="zdoctabelid" value="#{zdoctabelController.selected.zdoctabelid}" />
+                            <p:tooltip for="zdoctabelid" value="#{zdoctabelController.getComponentMessages('zdoctabelid', myBundle.EditZdoctabelHelpText_zdoctabelid)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZdoctabelLabel_namadocument}" for="namadocument" />
+                        <h:panelGroup>
+                            <p:inputText id="namadocument" value="#{zdoctabelController.selected.namadocument}" title="#{myBundle.EditZdoctabelTitle_namadocument}" size="255" maxlength="255"/>
+                            <p:tooltip for="namadocument" value="#{zdoctabelController.getComponentMessages('namadocument', myBundle.EditZdoctabelHelpText_namadocument)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZdoctabelLabel_typeid}" for="typeid" />
+                        <h:panelGroup>
+                            <p:inputText id="typeid" value="#{zdoctabelController.selected.typeid}" title="#{myBundle.EditZdoctabelTitle_typeid}"/>
+                            <p:tooltip for="typeid" value="#{zdoctabelController.getComponentMessages('typeid', myBundle.EditZdoctabelHelpText_typeid)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZdoctabelLabel_zdeptZdepid}" for="zdeptZdepid" />
+                        <h:panelGroup>
+                            <p:inputText id="zdeptZdepid" value="#{zdoctabelController.selected.zdeptZdepid}" title="#{myBundle.EditZdoctabelTitle_zdeptZdepid}"/>
+                            <p:tooltip for="zdeptZdepid" value="#{zdoctabelController.getComponentMessages('zdeptZdepid', myBundle.EditZdoctabelHelpText_zdeptZdepid)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZdoctabelLabel_zdocdept}" for="zdocdept" />
+                        <h:panelGroup>
+                            <p:inputText id="zdocdept" value="#{zdoctabelController.selected.zdocdept}" title="#{myBundle.EditZdoctabelTitle_zdocdept}"/>
+                            <p:tooltip for="zdocdept" value="#{zdoctabelController.getComponentMessages('zdocdept', myBundle.EditZdoctabelHelpText_zdocdept)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZdoctabelLabel_zdoctabeltipeZdoctabeltipeid}" for="zdoctabeltipeZdoctabeltipeid" />
+                        <h:panelGroup>
+                            <p:inputText id="zdoctabeltipeZdoctabeltipeid" value="#{zdoctabelController.selected.zdoctabeltipeZdoctabeltipeid}" title="#{myBundle.EditZdoctabelTitle_zdoctabeltipeZdoctabeltipeid}"/>
+                            <p:tooltip for="zdoctabeltipeZdoctabeltipeid" value="#{zdoctabelController.getComponentMessages('zdoctabeltipeZdoctabeltipeid', myBundle.EditZdoctabelHelpText_zdoctabeltipeZdoctabeltipeid)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zdoctabelController.save}" value="#{myBundle.Save}" update="display,:ZdoctabelListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZdoctabelEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZdoctabelEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

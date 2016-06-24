@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <h:form id="menuForm">
+            <p:menubar>
+                <p:menuitem value="#{myBundle.Home}" outcome="/index" icon="ui-icon-home"/>
+                <p:submenu label="#{myBundle.Maintenance}">
+                    <p:menuitem value="#{myBundle.ZdeptHeading}..." outcome="/zdept/index" />
+                    <p:menuitem value="#{myBundle.ZdocHeading}..." outcome="/zdoc/index" />
+                    <p:menuitem value="#{myBundle.ZdocZstatusdocHeading}..." outcome="/zdocZstatusdoc/index" />
+                    <p:menuitem value="#{myBundle.ZdocdistribusiHeading}..." outcome="/zdocdistribusi/index" />
+                    <p:menuitem value="#{myBundle.ZdoclineHeading}..." outcome="/zdocline/index" />
+                    <p:menuitem value="#{myBundle.ZdoclineZdocHeading}..." outcome="/zdoclineZdoc/index" />
+                    <p:menuitem value="#{myBundle.ZdoclineZuserHeading}..." outcome="/zdoclineZuser/index" />
+                    <p:menuitem value="#{myBundle.ZdocperubahanHeading}..." outcome="/zdocperubahan/index" />
+                    <p:menuitem value="#{myBundle.ZdocperubahanZdocHeading}..." outcome="/zdocperubahanZdoc/index" />
+                    <p:menuitem value="#{myBundle.ZdocrencanadistHeading}..." outcome="/zdocrencanadist/index" />
+                    <p:menuitem value="#{myBundle.ZdoctabelHeading}..." outcome="/zdoctabel/index" />
+                    <p:menuitem value="#{myBundle.ZdoctabeltipeHeading}..." outcome="/zdoctabeltipe/index" />
+                    <p:menuitem value="#{myBundle.ZprivilageHeading}..." outcome="/zprivilage/index" />
+                    <p:menuitem value="#{myBundle.ZstatusHeading}..." outcome="/zstatus/index" />
+                    <p:menuitem value="#{myBundle.ZstatusdocHeading}..." outcome="/zstatusdoc/index" />
+                    <p:menuitem value="#{myBundle.ZstatusdocZdocHeading}..." outcome="/zstatusdocZdoc/index" />
+                    <p:menuitem value="#{myBundle.ZuserHeading}..." outcome="/zuser/index" />
+                    <p:menuitem value="#{myBundle.ZuserLevelAdmHeading}..." outcome="/zuserLevelAdm/index" />
+                    <p:menuitem value="#{myBundle.ZuserLevelSysHeading}..." outcome="/zuserLevelSys/index" />
+                </p:submenu>
+            </p:menubar>
+        </h:form>
+    </ui:composition>
+
+</html>

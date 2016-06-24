@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZuserLevelAdmCreateDlg" widgetVar="ZuserLevelAdmCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateZuserLevelAdmTitle}" closeOnEscape="true">
+
+            <h:form id="ZuserLevelAdmCreateForm">
+
+                <h:panelGroup id="display" rendered="#{zuserLevelAdmController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateZuserLevelAdmLabel_zuserLevelAdmId}" for="zuserLevelAdmId" />
+                        <h:panelGroup>
+                            <p:inputText id="zuserLevelAdmId" value="#{zuserLevelAdmController.selected.zuserLevelAdmId}" title="#{myBundle.CreateZuserLevelAdmTitle_zuserLevelAdmId}" required="true" requiredMessage="#{myBundle.CreateZuserLevelAdmRequiredMessage_zuserLevelAdmId}"/>
+                            <p:tooltip for="zuserLevelAdmId" value="#{zuserLevelAdmController.getComponentMessages('zuserLevelAdmId', myBundle.CreateZuserLevelAdmHelpText_zuserLevelAdmId)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.CreateZuserLevelAdmLabel_levelAdmNo}" for="levelAdmNo" />
+                        <h:panelGroup>
+                            <p:inputText id="levelAdmNo" value="#{zuserLevelAdmController.selected.levelAdmNo}" title="#{myBundle.CreateZuserLevelAdmTitle_levelAdmNo}"/>
+                            <p:tooltip for="levelAdmNo" value="#{zuserLevelAdmController.getComponentMessages('levelAdmNo', myBundle.CreateZuserLevelAdmHelpText_levelAdmNo)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.CreateZuserLevelAdmLabel_name}" for="name" />
+                        <h:panelGroup>
+                            <p:inputText id="name" value="#{zuserLevelAdmController.selected.name}" title="#{myBundle.CreateZuserLevelAdmTitle_name}" size="255" maxlength="255"/>
+                            <p:tooltip for="name" value="#{zuserLevelAdmController.getComponentMessages('name', myBundle.CreateZuserLevelAdmHelpText_name)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zuserLevelAdmController.saveNew}" value="#{myBundle.Save}" update="display,:ZuserLevelAdmListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZuserLevelAdmCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZuserLevelAdmCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

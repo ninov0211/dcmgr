@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ZuserLevelSysEditDlg" widgetVar="ZuserLevelSysEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditZuserLevelSysTitle}" closeOnEscape="true">
+
+            <h:form id="ZuserLevelSysEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{zuserLevelSysController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditZuserLevelSysLabel_zuserLevelSysId}" for="zuserLevelSysId" />
+                        <h:panelGroup>
+                            <h:outputText id="zuserLevelSysId" value="#{zuserLevelSysController.selected.zuserLevelSysId}" />
+                            <p:tooltip for="zuserLevelSysId" value="#{zuserLevelSysController.getComponentMessages('zuserLevelSysId', myBundle.EditZuserLevelSysHelpText_zuserLevelSysId)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZuserLevelSysLabel_name}" for="name" />
+                        <h:panelGroup>
+                            <p:inputText id="name" value="#{zuserLevelSysController.selected.name}" title="#{myBundle.EditZuserLevelSysTitle_name}" size="255" maxlength="255"/>
+                            <p:tooltip for="name" value="#{zuserLevelSysController.getComponentMessages('name', myBundle.EditZuserLevelSysHelpText_name)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zuserLevelSysController.save}" value="#{myBundle.Save}" update="display,:ZuserLevelSysListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZuserLevelSysEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZuserLevelSysEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

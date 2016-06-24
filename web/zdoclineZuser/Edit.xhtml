@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ZdoclineZuserEditDlg" widgetVar="ZdoclineZuserEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditZdoclineZuserTitle}" closeOnEscape="true">
+
+            <h:form id="ZdoclineZuserEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{zdoclineZuserController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditZdoclineZuserLabel_zdoclineZdocLineId}" for="zdoclineZdocLineId" />
+                        <h:panelGroup>
+                            <h:outputText id="zdoclineZdocLineId" value="#{zdoclineZuserController.selected.zdoclineZdocLineId}" />
+                            <p:tooltip for="zdoclineZdocLineId" value="#{zdoclineZuserController.getComponentMessages('zdoclineZdocLineId', myBundle.EditZdoclineZuserHelpText_zdoclineZdocLineId)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZdoclineZuserLabel_zusersZuserid}" for="zusersZuserid" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="zusersZuserid" value="#{zdoclineZuserController.selected.zusersZuserid}"  converter="zuserConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{zuserController.items}"
+                                               var="zusersZuseridItem"
+                                               itemValue="#{zusersZuseridItem}"
+                                               itemLabel="#{zusersZuseridItem.username.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="zusersZuserid" value="#{zdoclineZuserController.getComponentMessages('zusersZuserid', myBundle.EditZdoclineZuserHelpText_zusersZuserid)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zdoclineZuserController.save}" value="#{myBundle.Save}" update="display,:ZdoclineZuserListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZdoclineZuserEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZdoclineZuserEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

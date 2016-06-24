@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZdoctabelViewDlg" widgetVar="ZdoctabelViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewZdoctabelTitle}" closeOnEscape="true">
+
+            <h:form id="ZdoctabelViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{zdoctabelController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewZdoctabelLabel_zdoctabelid}"/>
+                        <h:outputText value="#{zdoctabelController.selected.zdoctabelid}" title="#{myBundle.ViewZdoctabelTitle_zdoctabelid}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdoctabelLabel_namadocument}"/>
+                        <h:outputText value="#{zdoctabelController.selected.namadocument}" title="#{myBundle.ViewZdoctabelTitle_namadocument}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdoctabelLabel_typeid}"/>
+                        <h:outputText value="#{zdoctabelController.selected.typeid}" title="#{myBundle.ViewZdoctabelTitle_typeid}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdoctabelLabel_zdeptZdepid}"/>
+                        <h:outputText value="#{zdoctabelController.selected.zdeptZdepid}" title="#{myBundle.ViewZdoctabelTitle_zdeptZdepid}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdoctabelLabel_zdocdept}"/>
+                        <h:outputText value="#{zdoctabelController.selected.zdocdept}" title="#{myBundle.ViewZdoctabelTitle_zdocdept}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdoctabelLabel_zdoctabeltipeZdoctabeltipeid}"/>
+                        <h:outputText value="#{zdoctabelController.selected.zdoctabeltipeZdoctabeltipeid}" title="#{myBundle.ViewZdoctabelTitle_zdoctabeltipeZdoctabeltipeid}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('ZdoctabelViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

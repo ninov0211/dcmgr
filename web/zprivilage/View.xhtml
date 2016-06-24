@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZprivilageViewDlg" widgetVar="ZprivilageViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewZprivilageTitle}" closeOnEscape="true">
+
+            <h:form id="ZprivilageViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{zprivilageController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewZprivilageLabel_zprivilageid}"/>
+                        <h:outputText value="#{zprivilageController.selected.zprivilageid}" title="#{myBundle.ViewZprivilageTitle_zprivilageid}"/>
+
+                        <h:outputText value="#{myBundle.ViewZprivilageLabel_createdoc}"/>
+                        <h:outputText value="#{zprivilageController.selected.createdoc}" title="#{myBundle.ViewZprivilageTitle_createdoc}"/>
+
+                        <h:outputText value="#{myBundle.ViewZprivilageLabel_deletedoc}"/>
+                        <h:outputText value="#{zprivilageController.selected.deletedoc}" title="#{myBundle.ViewZprivilageTitle_deletedoc}"/>
+
+                        <h:outputText value="#{myBundle.ViewZprivilageLabel_maxprint}"/>
+                        <h:outputText value="#{zprivilageController.selected.maxprint}" title="#{myBundle.ViewZprivilageTitle_maxprint}"/>
+
+                        <h:outputText value="#{myBundle.ViewZprivilageLabel_name}"/>
+                        <h:outputText value="#{zprivilageController.selected.name}" title="#{myBundle.ViewZprivilageTitle_name}"/>
+
+                        <h:outputText value="#{myBundle.ViewZprivilageLabel_updatedoc}"/>
+                        <h:outputText value="#{zprivilageController.selected.updatedoc}" title="#{myBundle.ViewZprivilageTitle_updatedoc}"/>
+
+                        <h:outputText value="#{myBundle.ViewZprivilageLabel_viewdoc}"/>
+                        <h:outputText value="#{zprivilageController.selected.viewdoc}" title="#{myBundle.ViewZprivilageTitle_viewdoc}"/>
+
+                        <h:outputText value="#{myBundle.ViewZprivilageLabel_zprint}"/>
+                        <h:outputText value="#{zprivilageController.selected.zprint}" title="#{myBundle.ViewZprivilageTitle_zprint}"/>
+
+                        <h:outputText value="#{myBundle.ViewZprivilageLabel_zdoctabelid1}"/>
+                        <h:outputText value="#{zprivilageController.selected.zdoctabelid1.zdoctabelid}"/>
+
+                        <h:outputText value="#{myBundle.ViewZprivilageLabel_zdoctabelZdoctabelid}"/>
+                        <h:outputText value="#{zprivilageController.selected.zdoctabelZdoctabelid.zdoctabelid}"/>
+
+                        <h:outputText value="#{myBundle.ViewZprivilageLabel_zuserid1}"/>
+                        <h:outputText value="#{zprivilageController.selected.zuserid1.username}"/>
+
+                        <h:outputText value="#{myBundle.ViewZprivilageLabel_zuserZuserid}"/>
+                        <h:outputText value="#{zprivilageController.selected.zuserZuserid.username}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('ZprivilageViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

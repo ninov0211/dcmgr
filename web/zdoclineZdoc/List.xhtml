@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="ZdoclineZdocListForm">
+
+        <p:panel header="#{myBundle.ListZdoclineZdocTitle}">
+            <p:contextMenu id="ZdoclineZdocDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('ZdoclineZdocListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('ZdoclineZdocListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('ZdoclineZdocListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('ZdoclineZdocListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.ZdoclineZdocMenuItem_zdocline}" icon="ui-icon-search"  actionListener="#{zdoclineZdocController.prepareZdocline}" update=":ZdoclineViewForm" oncomplete="PF('ZdoclineViewDialog').show()" disabled="#{empty zdoclineZdocController.selected.zdocline}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{zdoclineZdocController.items}"
+                         lazy="false"
+                         rowKey="#{item.zdoclineZdocPK}"
+                         var="item"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{zdoclineZdocController.selected}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{zdoclineZdocController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.zdoclineZdocPK}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:ZdoclineZdocDataTableContextMenu" listener="#{zdoclineZdocController.resetParents}"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:ZdoclineZdocDataTableContextMenu" listener="#{zdoclineZdocController.resetParents}"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{zdoclineZdocController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('ZdoclineZdocListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.zdoclineZdocPK.zdoclinecollectionZdocLineId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListZdoclineZdocTitle_zdoclineZdocPK_zdoclinecollectionZdocLineId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.zdoclineZdocPK.zdoclinecollectionZdocLineId}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.zdoclineZdocPK.zdoccollectionZdocid}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListZdoclineZdocTitle_zdoclineZdocPK_zdoccollectionZdocid}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.zdoclineZdocPK.zdoccollectionZdocid}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.zdocline.zdocLineId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListZdoclineZdocTitle_zdocline}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.zdocline.zdocLineId}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{zdoclineZdocController.prepareCreate}" update=":ZdoclineZdocCreateForm" oncomplete="PF('ZdoclineZdocCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":ZdoclineZdocViewForm" oncomplete="PF('ZdoclineZdocViewDialog').show()" disabled="#{empty zdoclineZdocController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":ZdoclineZdocEditForm" oncomplete="PF('ZdoclineZdocEditDialog').show()" disabled="#{empty zdoclineZdocController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{zdoclineZdocController.delete}" update=":growl,datalist" disabled="#{empty zdoclineZdocController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

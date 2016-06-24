@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ZdoclineEditDlg" widgetVar="ZdoclineEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditZdoclineTitle}" closeOnEscape="true">
+
+            <h:form id="ZdoclineEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{zdoclineController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditZdoclineLabel_zdocLineId}" for="zdocLineId" />
+                        <h:panelGroup>
+                            <h:outputText id="zdocLineId" value="#{zdoclineController.selected.zdocLineId}" />
+                            <p:tooltip for="zdocLineId" value="#{zdoclineController.getComponentMessages('zdocLineId', myBundle.EditZdoclineHelpText_zdocLineId)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZdoclineLabel_alasan}" for="alasan" />
+                        <h:panelGroup>
+                            <p:inputText id="alasan" value="#{zdoclineController.selected.alasan}" title="#{myBundle.EditZdoclineTitle_alasan}" size="255" maxlength="255"/>
+                            <p:tooltip for="alasan" value="#{zdoclineController.getComponentMessages('alasan', myBundle.EditZdoclineHelpText_alasan)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZdoclineLabel_respondApprove}" for="respondApprove" />
+                        <h:panelGroup>
+                            <p:inputText id="respondApprove" value="#{zdoclineController.selected.respondApprove}" title="#{myBundle.EditZdoclineTitle_respondApprove}"/>
+                            <p:tooltip for="respondApprove" value="#{zdoclineController.getComponentMessages('respondApprove', myBundle.EditZdoclineHelpText_respondApprove)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZdoclineLabel_tglApproval}" for="tglApproval" />
+                        <h:panelGroup>
+                            <p:calendar id="tglApproval" pattern="MM/dd/yyyy HH:mm:ss" value="#{zdoclineController.selected.tglApproval}" title="#{myBundle.EditZdoclineTitle_tglApproval}"  showOn="button"/>
+                            <p:tooltip for="tglApproval" value="#{zdoclineController.getComponentMessages('tglApproval', myBundle.EditZdoclineHelpText_tglApproval)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZdoclineLabel_tglRespon}" for="tglRespon" />
+                        <h:panelGroup>
+                            <p:calendar id="tglRespon" pattern="MM/dd/yyyy HH:mm:ss" value="#{zdoclineController.selected.tglRespon}" title="#{myBundle.EditZdoclineTitle_tglRespon}"  showOn="button"/>
+                            <p:tooltip for="tglRespon" value="#{zdoclineController.getComponentMessages('tglRespon', myBundle.EditZdoclineHelpText_tglRespon)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZdoclineLabel_zstatususerid}" for="zstatususerid" />
+                        <h:panelGroup>
+                            <p:inputText id="zstatususerid" value="#{zdoclineController.selected.zstatususerid}" title="#{myBundle.EditZdoclineTitle_zstatususerid}"/>
+                            <p:tooltip for="zstatususerid" value="#{zdoclineController.getComponentMessages('zstatususerid', myBundle.EditZdoclineHelpText_zstatususerid)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZdoclineLabel_zuserid}" for="zuserid" />
+                        <h:panelGroup>
+                            <p:inputText id="zuserid" value="#{zdoclineController.selected.zuserid}" title="#{myBundle.EditZdoclineTitle_zuserid}"/>
+                            <p:tooltip for="zuserid" value="#{zdoclineController.getComponentMessages('zuserid', myBundle.EditZdoclineHelpText_zuserid)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZdoclineLabel_zstatusCollection}" for="zstatusCollection" />
+                        <h:panelGroup>
+                            <p:selectManyMenu id="zstatusCollection" value="#{zdoclineController.selected.zstatusCollection}"  converter="zstatusConverter">
+                                <f:selectItems value="#{zstatusController.items}"
+                                               var="zstatusCollectionItem"
+                                               itemValue="#{zstatusCollectionItem}"
+                                               itemLabel="#{zstatusCollectionItem.descript.toString()}"
+                                               />
+
+                            </p:selectManyMenu>
+                            <p:tooltip for="zstatusCollection" value="#{zdoclineController.getComponentMessages('zstatusCollection', myBundle.EditZdoclineHelpText_zstatusCollection)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZdoclineLabel_zdocid}" for="zdocid" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="zdocid" value="#{zdoclineController.selected.zdocid}"  converter="zdocConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{zdocController.items}"
+                                               var="zdocidItem"
+                                               itemValue="#{zdocidItem}"
+                                               itemLabel="#{zdocidItem.name.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="zdocid" value="#{zdoclineController.getComponentMessages('zdocid', myBundle.EditZdoclineHelpText_zdocid)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zdoclineController.save}" value="#{myBundle.Save}" update="display,:ZdoclineListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZdoclineEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZdoclineEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

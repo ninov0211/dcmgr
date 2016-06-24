@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ZdoclineZdocEditDlg" widgetVar="ZdoclineZdocEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditZdoclineZdocTitle}" closeOnEscape="true">
+
+            <h:form id="ZdoclineZdocEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{zdoclineZdocController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditZdoclineZdocLabel_zdoclineZdocPK_zdoclinecollectionZdocLineId}" for="zdoclineZdocPK_zdoclinecollectionZdocLineId" />
+                        <h:panelGroup>
+                            <h:outputText id="zdoclineZdocPK_zdoclinecollectionZdocLineId" value="#{zdoclineZdocController.selected.zdoclineZdocPK.zdoclinecollectionZdocLineId}" />
+                            <p:tooltip for="zdoclineZdocPK_zdoclinecollectionZdocLineId" value="#{zdoclineZdocController.getComponentMessages('zdoclineZdocPK_zdoclinecollectionZdocLineId', myBundle.EditZdoclineZdocHelpText_zdoclineZdocPK_zdoclinecollectionZdocLineId)}"/>
+                        </h:panelGroup>
+
+
+                        <h:outputLabel value="#{myBundle.EditZdoclineZdocLabel_zdoclineZdocPK_zdoccollectionZdocid}" for="zdoclineZdocPK_zdoccollectionZdocid" />
+                        <h:panelGroup>
+                            <h:outputText id="zdoclineZdocPK_zdoccollectionZdocid" value="#{zdoclineZdocController.selected.zdoclineZdocPK.zdoccollectionZdocid}" />
+                            <p:tooltip for="zdoclineZdocPK_zdoccollectionZdocid" value="#{zdoclineZdocController.getComponentMessages('zdoclineZdocPK_zdoccollectionZdocid', myBundle.EditZdoclineZdocHelpText_zdoclineZdocPK_zdoccollectionZdocid)}"/>
+                        </h:panelGroup>
+
+
+                        <h:outputLabel value="#{myBundle.EditZdoclineZdocLabel_zdocline}" for="zdocline" />
+                        <h:panelGroup>
+                            <h:outputText id="zdocline" value="#{zdoclineZdocController.selected.zdocline}" />
+                            <p:tooltip for="zdocline" value="#{zdoclineZdocController.getComponentMessages('zdocline', myBundle.EditZdoclineZdocHelpText_zdocline)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zdoclineZdocController.save}" value="#{myBundle.Save}" update="display,:ZdoclineZdocListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZdoclineZdocEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZdoclineZdocEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

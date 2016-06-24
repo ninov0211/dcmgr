@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="ZdocdistribusiListForm">
+
+        <p:panel header="#{myBundle.ListZdocdistribusiTitle}">
+            <p:contextMenu id="ZdocdistribusiDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('ZdocdistribusiListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('ZdocdistribusiListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('ZdocdistribusiListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('ZdocdistribusiListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.ZdocdistribusiMenuItem_zuserid}" icon="ui-icon-search"  actionListener="#{zdocdistribusiController.prepareZuserid}" update=":ZuserViewForm" oncomplete="PF('ZuserViewDialog').show()" disabled="#{empty zdocdistribusiController.selected.zuserid}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{zdocdistribusiController.items}"
+                         lazy="false"
+                         rowKey="#{item.zdocdistribusiid}"
+                         var="item"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{zdocdistribusiController.selected}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{zdocdistribusiController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.zdocdistribusiid}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:ZdocdistribusiDataTableContextMenu" listener="#{zdocdistribusiController.resetParents}"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:ZdocdistribusiDataTableContextMenu" listener="#{zdocdistribusiController.resetParents}"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{zdocdistribusiController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('ZdocdistribusiListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.zdocdistribusiid}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListZdocdistribusiTitle_zdocdistribusiid}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.zdocdistribusiid}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.name}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListZdocdistribusiTitle_name}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.name}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.tgldistribusi}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListZdocdistribusiTitle_tgldistribusi}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tgldistribusi}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.zaccept}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListZdocdistribusiTitle_zaccept}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.zaccept}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.zdocid}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListZdocdistribusiTitle_zdocid}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.zdocid}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.zuserid.username}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListZdocdistribusiTitle_zuserid}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.zuserid.username}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{zdocdistribusiController.prepareCreate}" update=":ZdocdistribusiCreateForm" oncomplete="PF('ZdocdistribusiCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":ZdocdistribusiViewForm" oncomplete="PF('ZdocdistribusiViewDialog').show()" disabled="#{empty zdocdistribusiController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":ZdocdistribusiEditForm" oncomplete="PF('ZdocdistribusiEditDialog').show()" disabled="#{empty zdocdistribusiController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{zdocdistribusiController.delete}" update=":growl,datalist" disabled="#{empty zdocdistribusiController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

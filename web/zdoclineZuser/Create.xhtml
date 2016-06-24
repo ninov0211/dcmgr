@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZdoclineZuserCreateDlg" widgetVar="ZdoclineZuserCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateZdoclineZuserTitle}" closeOnEscape="true">
+
+            <h:form id="ZdoclineZuserCreateForm">
+
+                <h:panelGroup id="display" rendered="#{zdoclineZuserController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateZdoclineZuserLabel_zdoclineZdocLineId}" for="zdoclineZdocLineId" />
+                        <h:panelGroup>
+                            <p:inputText id="zdoclineZdocLineId" value="#{zdoclineZuserController.selected.zdoclineZdocLineId}" title="#{myBundle.CreateZdoclineZuserTitle_zdoclineZdocLineId}" required="true" requiredMessage="#{myBundle.CreateZdoclineZuserRequiredMessage_zdoclineZdocLineId}"/>
+                            <p:tooltip for="zdoclineZdocLineId" value="#{zdoclineZuserController.getComponentMessages('zdoclineZdocLineId', myBundle.CreateZdoclineZuserHelpText_zdoclineZdocLineId)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.CreateZdoclineZuserLabel_zusersZuserid}" for="zusersZuserid" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="zusersZuserid" value="#{zdoclineZuserController.selected.zusersZuserid}"  converter="zuserConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{zuserController.items}"
+                                               var="zusersZuseridItem"
+                                               itemValue="#{zusersZuseridItem}"
+                                               itemLabel="#{zusersZuseridItem.username.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="zusersZuserid" value="#{zdoclineZuserController.getComponentMessages('zusersZuserid', myBundle.CreateZdoclineZuserHelpText_zusersZuserid)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zdoclineZuserController.saveNew}" value="#{myBundle.Save}" update="display,:ZdoclineZuserListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZdoclineZuserCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZdoclineZuserCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

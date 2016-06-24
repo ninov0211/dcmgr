@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="ZuserListForm">
+
+        <p:panel header="#{myBundle.ListZuserTitle}">
+            <p:contextMenu id="ZuserDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('ZuserListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('ZuserListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('ZuserListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('ZuserListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.ZuserMenuItem_zdocrencanadistCollection}" icon="ui-icon-search"  action="#{zuserController.navigateZdocrencanadistCollection}" disabled="#{empty zuserController.selected.zdocrencanadistCollection}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.ZuserMenuItem_zdocdistribusiCollection}" icon="ui-icon-search"  action="#{zuserController.navigateZdocdistribusiCollection}" disabled="#{empty zuserController.selected.zdocdistribusiCollection}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.ZuserMenuItem_zdocCollection}" icon="ui-icon-search"  action="#{zuserController.navigateZdocCollection}" disabled="#{empty zuserController.selected.zdocCollection}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.ZuserMenuItem_zprivilageCollection}" icon="ui-icon-search"  action="#{zuserController.navigateZprivilageCollection}" disabled="#{empty zuserController.selected.zprivilageCollection}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.ZuserMenuItem_zprivilageCollection1}" icon="ui-icon-search"  action="#{zuserController.navigateZprivilageCollection1}" disabled="#{empty zuserController.selected.zprivilageCollection1}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.ZuserMenuItem_zdoclineZuserCollection}" icon="ui-icon-search"  action="#{zuserController.navigateZdoclineZuserCollection}" disabled="#{empty zuserController.selected.zdoclineZuserCollection}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{zuserController.items}"
+                         lazy="false"
+                         rowKey="#{item.zuserid}"
+                         var="item"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{zuserController.selected}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{zuserController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.zuserid}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:ZuserDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:ZuserDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('ZuserListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.zuserid}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListZuserTitle_zuserid}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.zuserid}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.leveladmid}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListZuserTitle_leveladmid}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.leveladmid}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.levelsysid}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListZuserTitle_levelsysid}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.levelsysid}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.useremail}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListZuserTitle_useremail}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.useremail}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.username}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListZuserTitle_username}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.username}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.userpass}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListZuserTitle_userpass}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.userpass}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.zactiveuser}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListZuserTitle_zactiveuser}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.zactiveuser}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.zdeptZdepid}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListZuserTitle_zdeptZdepid}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.zdeptZdepid}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.zdeptid1}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListZuserTitle_zdeptid1}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.zdeptid1}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.zuserleveladmZuserLevelAdmId}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListZuserTitle_zuserleveladmZuserLevelAdmId}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.zuserleveladmZuserLevelAdmId}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.zuserlevelsysZuserLevelSysId}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListZuserTitle_zuserlevelsysZuserLevelSysId}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.zuserlevelsysZuserLevelSysId}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{zuserController.prepareCreate}" update=":ZuserCreateForm" oncomplete="PF('ZuserCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":ZuserViewForm" oncomplete="PF('ZuserViewDialog').show()" disabled="#{empty zuserController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":ZuserEditForm" oncomplete="PF('ZuserEditDialog').show()" disabled="#{empty zuserController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{zuserController.delete}" update=":growl,datalist" disabled="#{empty zuserController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

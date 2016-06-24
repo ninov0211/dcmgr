@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="ZstatusdocZdocListForm">
+
+        <p:panel header="#{myBundle.ListZstatusdocZdocTitle}">
+            <p:contextMenu id="ZstatusdocZdocDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('ZstatusdocZdocListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('ZstatusdocZdocListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('ZstatusdocZdocListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('ZstatusdocZdocListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.ZstatusdocZdocMenuItem_zstatusdoc}" icon="ui-icon-search"  actionListener="#{zstatusdocZdocController.prepareZstatusdoc}" update=":ZstatusdocViewForm" oncomplete="PF('ZstatusdocViewDialog').show()" disabled="#{empty zstatusdocZdocController.selected.zstatusdoc}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{zstatusdocZdocController.items}"
+                         lazy="false"
+                         rowKey="#{item.zstatusdocZdocPK}"
+                         var="item"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{zstatusdocZdocController.selected}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{zstatusdocZdocController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.zstatusdocZdocPK}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:ZstatusdocZdocDataTableContextMenu" listener="#{zstatusdocZdocController.resetParents}"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:ZstatusdocZdocDataTableContextMenu" listener="#{zstatusdocZdocController.resetParents}"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{zstatusdocZdocController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('ZstatusdocZdocListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.zstatusdocZdocPK.zstatusdoccollectionZstatusdocid}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListZstatusdocZdocTitle_zstatusdocZdocPK_zstatusdoccollectionZstatusdocid}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.zstatusdocZdocPK.zstatusdoccollectionZstatusdocid}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.zstatusdocZdocPK.zdoccollectionZdocid}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListZstatusdocZdocTitle_zstatusdocZdocPK_zdoccollectionZdocid}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.zstatusdocZdocPK.zdoccollectionZdocid}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.zstatusdoc.statusdescription}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListZstatusdocZdocTitle_zstatusdoc}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.zstatusdoc.statusdescription}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{zstatusdocZdocController.prepareCreate}" update=":ZstatusdocZdocCreateForm" oncomplete="PF('ZstatusdocZdocCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":ZstatusdocZdocViewForm" oncomplete="PF('ZstatusdocZdocViewDialog').show()" disabled="#{empty zstatusdocZdocController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":ZstatusdocZdocEditForm" oncomplete="PF('ZstatusdocZdocEditDialog').show()" disabled="#{empty zstatusdocZdocController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{zstatusdocZdocController.delete}" update=":growl,datalist" disabled="#{empty zstatusdocZdocController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

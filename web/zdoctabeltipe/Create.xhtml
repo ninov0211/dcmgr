@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZdoctabeltipeCreateDlg" widgetVar="ZdoctabeltipeCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateZdoctabeltipeTitle}" closeOnEscape="true">
+
+            <h:form id="ZdoctabeltipeCreateForm">
+
+                <h:panelGroup id="display" rendered="#{zdoctabeltipeController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateZdoctabeltipeLabel_zdoctabeltipeid}" for="zdoctabeltipeid" />
+                        <h:panelGroup>
+                            <p:inputText id="zdoctabeltipeid" value="#{zdoctabeltipeController.selected.zdoctabeltipeid}" title="#{myBundle.CreateZdoctabeltipeTitle_zdoctabeltipeid}" required="true" requiredMessage="#{myBundle.CreateZdoctabeltipeRequiredMessage_zdoctabeltipeid}"/>
+                            <p:tooltip for="zdoctabeltipeid" value="#{zdoctabeltipeController.getComponentMessages('zdoctabeltipeid', myBundle.CreateZdoctabeltipeHelpText_zdoctabeltipeid)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.CreateZdoctabeltipeLabel_namatipe}" for="namatipe" />
+                        <h:panelGroup>
+                            <p:inputText id="namatipe" value="#{zdoctabeltipeController.selected.namatipe}" title="#{myBundle.CreateZdoctabeltipeTitle_namatipe}" size="255" maxlength="255"/>
+                            <p:tooltip for="namatipe" value="#{zdoctabeltipeController.getComponentMessages('namatipe', myBundle.CreateZdoctabeltipeHelpText_namatipe)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zdoctabeltipeController.saveNew}" value="#{myBundle.Save}" update="display,:ZdoctabeltipeListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZdoctabeltipeCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZdoctabeltipeCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

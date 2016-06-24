@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZdocCreateDlg" widgetVar="ZdocCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateZdocTitle}" closeOnEscape="true">
+
+            <h:form id="ZdocCreateForm">
+
+                <h:panelGroup id="display" rendered="#{zdocController.selected != null}">
+                    <p:tabView id="ZdocTabView">
+
+                        <p:tab id="ZdocTab1" title="#{myBundle.TabHeaderPrefix} 1">
+                            <p:panelGrid columns="8" columnClasses="column">
+                                 <p:outputLabel value="#{myBundle.CreateZdocLabel_nomordocument}" for="nomordocument" />
+                                <h:panelGroup>
+                                    <p:inputText id="nomordocument" value="#{zdocController.selected.nomordocument}" title="#{myBundle.CreateZdocTitle_nomordocument}" size="20" maxlength="255"/>
+                                    <p:tooltip for="nomordocument" value="#{zdocController.getComponentMessages('nomordocument', myBundle.CreateZdocHelpText_nomordocument)}"/>
+                                </h:panelGroup> 
+                                 
+                                <p:outputLabel value="#{myBundle.CreateZdocLabel_alasanpenerbitan}" for="alasanpenerbitan" />
+                                <h:panelGroup>
+                                    <p:inputText id="alasanpenerbitan" value="#{zdocController.selected.alasanpenerbitan}" title="#{myBundle.CreateZdocTitle_alasanpenerbitan}" size="20" maxlength="255"/>
+                                    <p:tooltip for="alasanpenerbitan" value="#{zdocController.getComponentMessages('alasanpenerbitan', myBundle.CreateZdocHelpText_alasanpenerbitan)}"/>
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{myBundle.CreateZdocLabel_fileupload}" for="fileupload" />
+                                <h:panelGroup>
+                                    <p:inputText id="fileupload" value="#{zdocController.selected.fileupload}" title="#{myBundle.CreateZdocTitle_fileupload}" size="20" maxlength="255"/>
+                                    <p:tooltip for="fileupload" value="#{zdocController.getComponentMessages('fileupload', myBundle.CreateZdocHelpText_fileupload)}"/>
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{myBundle.CreateZdocLabel_juduldoc}" for="juduldoc" />
+                                <h:panelGroup>
+                                    <p:inputText id="juduldoc" value="#{zdocController.selected.juduldoc}" title="#{myBundle.CreateZdocTitle_juduldoc}" size="20" maxlength="255"/>
+                                    <p:tooltip for="juduldoc" value="#{zdocController.getComponentMessages('juduldoc', myBundle.CreateZdocHelpText_juduldoc)}"/>
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{myBundle.CreateZdocLabel_keteranganperubahan}" for="keteranganperubahan" />
+                                <h:panelGroup>
+                                    <p:inputText id="keteranganperubahan" value="#{zdocController.selected.keteranganperubahan}" title="#{myBundle.CreateZdocTitle_keteranganperubahan}" size="20" maxlength="255"/>
+                                    <p:tooltip for="keteranganperubahan" value="#{zdocController.getComponentMessages('keteranganperubahan', myBundle.CreateZdocHelpText_keteranganperubahan)}"/>
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{myBundle.CreateZdocLabel_name}" for="name" />
+                                <h:panelGroup>
+                                    <p:inputText id="name" value="#{zdocController.selected.name}" title="#{myBundle.CreateZdocTitle_name}" size="20" maxlength="255"/>
+                                    <p:tooltip for="name" value="#{zdocController.getComponentMessages('name', myBundle.CreateZdocHelpText_name)}"/>
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{myBundle.CreateZdocLabel_nodraft}" for="nodraft" />
+                                <h:panelGroup>
+                                    <p:inputText id="nodraft" value="#{zdocController.selected.nodraft}" title="#{myBundle.CreateZdocTitle_nodraft}" size="20" maxlength="255"/>
+                                    <p:tooltip for="nodraft" value="#{zdocController.getComponentMessages('nodraft', myBundle.CreateZdocHelpText_nodraft)}"/>
+                                </h:panelGroup>
+
+                               
+
+                                <p:outputLabel value="#{myBundle.CreateZdocLabel_notadcperubahan}" for="notadcperubahan" />
+                                <h:panelGroup>
+                                    <p:inputText id="notadcperubahan" value="#{zdocController.selected.notadcperubahan}" title="#{myBundle.CreateZdocTitle_notadcperubahan}" size="20" maxlength="255"/>
+                                    <p:tooltip for="notadcperubahan" value="#{zdocController.getComponentMessages('notadcperubahan', myBundle.CreateZdocHelpText_notadcperubahan)}"/>
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{myBundle.CreateZdocLabel_notadcsosialisasi}" for="notadcsosialisasi" />
+                                <h:panelGroup>
+                                    <p:inputText id="notadcsosialisasi" value="#{zdocController.selected.notadcsosialisasi}" title="#{myBundle.CreateZdocTitle_notadcsosialisasi}" size="20" maxlength="255"/>
+                                    <p:tooltip for="notadcsosialisasi" value="#{zdocController.getComponentMessages('notadcsosialisasi', myBundle.CreateZdocHelpText_notadcsosialisasi)}"/>
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{myBundle.CreateZdocLabel_revisi}" for="revisi" />
+                                <h:panelGroup>
+                                    <p:inputText id="revisi" value="#{zdocController.selected.revisi}" title="#{myBundle.CreateZdocTitle_revisi}" size="20" maxlength="255"/>
+                                    <p:tooltip for="revisi" value="#{zdocController.getComponentMessages('revisi', myBundle.CreateZdocHelpText_revisi)}"/>
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{myBundle.CreateZdocLabel_revisinumber}" for="revisinumber" />
+                                <h:panelGroup>
+                                    <p:inputText id="revisinumber" value="#{zdocController.selected.revisinumber}" title="#{myBundle.CreateZdocTitle_revisinumber}"/>
+                                    <p:tooltip for="revisinumber" value="#{zdocController.getComponentMessages('revisinumber', myBundle.CreateZdocHelpText_revisinumber)}"/>
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{myBundle.CreateZdocLabel_tanggaldoc}" for="tanggaldoc" />
+                                <h:panelGroup>
+                                    <p:calendar id="tanggaldoc" pattern="MM/dd/yyyy" value="#{zdocController.selected.tanggaldoc}" title="#{myBundle.CreateZdocTitle_tanggaldoc}"  showOn="button"/>
+                                    <p:tooltip for="tanggaldoc" value="#{zdocController.getComponentMessages('tanggaldoc', myBundle.CreateZdocHelpText_tanggaldoc)}"/>
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{myBundle.CreateZdocLabel_tgldraft}" for="tgldraft" />
+                                <h:panelGroup>
+                                    <p:calendar id="tgldraft" pattern="MM/dd/yyyy HH:mm:ss" value="#{zdocController.selected.tgldraft}" title="#{myBundle.CreateZdocTitle_tgldraft}"  showOn="button"/>
+                                    <p:tooltip for="tgldraft" value="#{zdocController.getComponentMessages('tgldraft', myBundle.CreateZdocHelpText_tgldraft)}"/>
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{myBundle.CreateZdocLabel_tglrencanaberlaku}" for="tglrencanaberlaku" />
+                                <h:panelGroup>
+                                    <p:calendar id="tglrencanaberlaku" pattern="MM/dd/yyyy" value="#{zdocController.selected.tglrencanaberlaku}" title="#{myBundle.CreateZdocTitle_tglrencanaberlaku}"  showOn="button"/>
+                                    <p:tooltip for="tglrencanaberlaku" value="#{zdocController.getComponentMessages('tglrencanaberlaku', myBundle.CreateZdocHelpText_tglrencanaberlaku)}"/>
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{myBundle.CreateZdocLabel_zactive}" for="zactive" />
+                                <h:panelGroup>
+                                    <p:inputText id="zactive" value="#{zdocController.selected.zactive}" title="#{myBundle.CreateZdocTitle_zactive}"/>
+                                    <p:tooltip for="zactive" value="#{zdocController.getComponentMessages('zactive', myBundle.CreateZdocHelpText_zactive)}"/>
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{myBundle.CreateZdocLabel_zdoctabelZdoctabelid}" for="zdoctabelZdoctabelid" />
+                                <h:panelGroup>
+                                    <p:inputText id="zdoctabelZdoctabelid" value="#{zdocController.selected.zdoctabelZdoctabelid}" title="#{myBundle.CreateZdocTitle_zdoctabelZdoctabelid}"/>
+                                    <p:tooltip for="zdoctabelZdoctabelid" value="#{zdocController.getComponentMessages('zdoctabelZdoctabelid', myBundle.CreateZdocHelpText_zdoctabelZdoctabelid)}"/>
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{myBundle.CreateZdocLabel_zstatusdoc}" for="zstatusdoc" />
+                                <h:panelGroup>
+                                    <p:inputText id="zstatusdoc" value="#{zdocController.selected.zstatusdoc}" title="#{myBundle.CreateZdocTitle_zstatusdoc}"/>
+                                    <p:tooltip for="zstatusdoc" value="#{zdocController.getComponentMessages('zstatusdoc', myBundle.CreateZdocHelpText_zstatusdoc)}"/>
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{myBundle.CreateZdocLabel_zurgent}" for="zurgent" />
+                                <h:panelGroup>
+                                    <p:inputText id="zurgent" value="#{zdocController.selected.zurgent}" title="#{myBundle.CreateZdocTitle_zurgent}"/>
+                                    <p:tooltip for="zurgent" value="#{zdocController.getComponentMessages('zurgent', myBundle.CreateZdocHelpText_zurgent)}"/>
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{myBundle.CreateZdocLabel_zdoctabelid}" for="zdoctabelid" />
+                                <h:panelGroup>
+                                    <p:selectOneMenu id="zdoctabelid" value="#{zdocController.selected.zdoctabelid}"  converter="zdoctabelConverter">
+                                        <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                        <f:selectItems value="#{zdoctabelController.items}"
+                                                       var="zdoctabelidItem"
+                                                       itemValue="#{zdoctabelidItem}"
+                                                       itemLabel="#{zdoctabelidItem.zdoctabelid.toString()}"
+                                                       />
+
+                                    </p:selectOneMenu>
+                                    <p:tooltip for="zdoctabelid" value="#{zdocController.getComponentMessages('zdoctabelid', myBundle.CreateZdocHelpText_zdoctabelid)}"/>
+                                </h:panelGroup>
+
+                                <p:outputLabel value="#{myBundle.CreateZdocLabel_zuserid}" for="zuserid" />
+                                <h:panelGroup>
+                                    <p:selectOneMenu id="zuserid" value="#{zdocController.selected.zuserid}"  converter="zuserConverter">
+                                        <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                        <f:selectItems value="#{zuserController.items}"
+                                                       var="zuseridItem"
+                                                       itemValue="#{zuseridItem}"
+                                                       itemLabel="#{zuseridItem.username.toString()}"
+                                                       />
+
+                                    </p:selectOneMenu>
+                                    <p:tooltip for="zuserid" value="#{zdocController.getComponentMessages('zuserid', myBundle.CreateZdocHelpText_zuserid)}"/>
+                                </h:panelGroup>
+                            </p:panelGrid>
+                        </p:tab>
+                    </p:tabView>
+                    <p:commandButton actionListener="#{zdocController.saveNew}" value="#{myBundle.Save}" update="display,:ZdocListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZdocCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZdocCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+                
+
+            </h:form>
+            <h:panelGroup>
+                <h:panelGroup>
+                <b>ZDOCRENCANADISTRIBUSI</b>   
+                <p:dataTable>
+                   <p:column><f:facet name="header"><h:outputText value="Nama"/></f:facet><h:outputText value="RRR"/></p:column>
+                    <p:column><f:facet name="header"><h:outputText value="ID"/></f:facet><h:outputText value="RRR"/></p:column>
+                    
+                    
+                </p:dataTable>
+                    
+                </h:panelGroup>  
+                
+                
+                
+               
+                
+            </h:panelGroup>
+            <h:panelGroup>
+                <h:panelGroup>
+                <b>ZDOC PERUBAHAN</b>   
+                <p:dataTable>
+                    <p:column><f:facet name="header"><h:outputText value="No"/></f:facet><h:outputText value="RRR"/></p:column>
+                    <p:column><f:facet name="header"><h:outputText value="Bagian Step"/></f:facet><h:outputText value="RRR"/></p:column>
+                    <p:column><f:facet name="header"><h:outputText value="Yang Dirubah"/></f:facet><h:outputText value="RRR"/></p:column>
+                    <p:column><f:facet name="header"><h:outputText value="Menjadi"/></f:facet><h:outputText value="RRR"/></p:column>
+                    
+                </p:dataTable>
+                    
+                </h:panelGroup>     
+                
+               
+                
+            </h:panelGroup>
+             <h:panelGroup>
+                <h:panelGroup>
+                <b>ZDOCLINE</b>   
+                <p:dataTable
+                    id="datalst"
+                         value="#{zdocrencanadistController.items}">
+                    <p:column><f:facet name="header"><h:outputText value="Nama"/></f:facet><h:outputText value="RRR"/></p:column>
+                    <p:column><f:facet name="header"><h:outputText value="Tanggal Approval"/></f:facet><h:outputText value="RRR"/></p:column>
+                     <p:column><f:facet name="header"><h:outputText value="Respon"/></f:facet><h:outputText value="RRR"/></p:column>
+                     <p:column><f:facet name="header"><h:outputText value="Alasan"/></f:facet><h:outputText value="RRR"/></p:column>
+                    
+                    
+                </p:dataTable>
+                    
+                </h:panelGroup>     
+                
+               
+                
+            </h:panelGroup>    
+            
+            
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

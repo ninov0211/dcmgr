@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ZdocdistribusiEditDlg" widgetVar="ZdocdistribusiEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditZdocdistribusiTitle}" closeOnEscape="true">
+
+            <h:form id="ZdocdistribusiEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{zdocdistribusiController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditZdocdistribusiLabel_zdocdistribusiid}" for="zdocdistribusiid" />
+                        <h:panelGroup>
+                            <h:outputText id="zdocdistribusiid" value="#{zdocdistribusiController.selected.zdocdistribusiid}" />
+                            <p:tooltip for="zdocdistribusiid" value="#{zdocdistribusiController.getComponentMessages('zdocdistribusiid', myBundle.EditZdocdistribusiHelpText_zdocdistribusiid)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZdocdistribusiLabel_name}" for="name" />
+                        <h:panelGroup>
+                            <p:inputText id="name" value="#{zdocdistribusiController.selected.name}" title="#{myBundle.EditZdocdistribusiTitle_name}" size="255" maxlength="255"/>
+                            <p:tooltip for="name" value="#{zdocdistribusiController.getComponentMessages('name', myBundle.EditZdocdistribusiHelpText_name)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZdocdistribusiLabel_tgldistribusi}" for="tgldistribusi" />
+                        <h:panelGroup>
+                            <p:calendar id="tgldistribusi" pattern="MM/dd/yyyy HH:mm:ss" value="#{zdocdistribusiController.selected.tgldistribusi}" title="#{myBundle.EditZdocdistribusiTitle_tgldistribusi}"  showOn="button"/>
+                            <p:tooltip for="tgldistribusi" value="#{zdocdistribusiController.getComponentMessages('tgldistribusi', myBundle.EditZdocdistribusiHelpText_tgldistribusi)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZdocdistribusiLabel_zaccept}" for="zaccept" />
+                        <h:panelGroup>
+                            <p:inputText id="zaccept" value="#{zdocdistribusiController.selected.zaccept}" title="#{myBundle.EditZdocdistribusiTitle_zaccept}"/>
+                            <p:tooltip for="zaccept" value="#{zdocdistribusiController.getComponentMessages('zaccept', myBundle.EditZdocdistribusiHelpText_zaccept)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZdocdistribusiLabel_zdocid}" for="zdocid" />
+                        <h:panelGroup>
+                            <p:inputText id="zdocid" value="#{zdocdistribusiController.selected.zdocid}" title="#{myBundle.EditZdocdistribusiTitle_zdocid}"/>
+                            <p:tooltip for="zdocid" value="#{zdocdistribusiController.getComponentMessages('zdocid', myBundle.EditZdocdistribusiHelpText_zdocid)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.EditZdocdistribusiLabel_zuserid}" for="zuserid" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="zuserid" value="#{zdocdistribusiController.selected.zuserid}"  converter="zuserConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{zuserController.items}"
+                                               var="zuseridItem"
+                                               itemValue="#{zuseridItem}"
+                                               itemLabel="#{zuseridItem.username.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="zuserid" value="#{zdocdistribusiController.getComponentMessages('zuserid', myBundle.EditZdocdistribusiHelpText_zuserid)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zdocdistribusiController.save}" value="#{myBundle.Save}" update="display,:ZdocdistribusiListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZdocdistribusiEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZdocdistribusiEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

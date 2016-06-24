@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZdoclineViewDlg" widgetVar="ZdoclineViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewZdoclineTitle}" closeOnEscape="true">
+
+            <h:form id="ZdoclineViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{zdoclineController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewZdoclineLabel_zdocLineId}"/>
+                        <h:outputText value="#{zdoclineController.selected.zdocLineId}" title="#{myBundle.ViewZdoclineTitle_zdocLineId}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdoclineLabel_alasan}"/>
+                        <h:outputText value="#{zdoclineController.selected.alasan}" title="#{myBundle.ViewZdoclineTitle_alasan}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdoclineLabel_respondApprove}"/>
+                        <h:outputText value="#{zdoclineController.selected.respondApprove}" title="#{myBundle.ViewZdoclineTitle_respondApprove}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdoclineLabel_tglApproval}"/>
+                        <h:outputText value="#{zdoclineController.selected.tglApproval}" title="#{myBundle.ViewZdoclineTitle_tglApproval}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewZdoclineLabel_tglRespon}"/>
+                        <h:outputText value="#{zdoclineController.selected.tglRespon}" title="#{myBundle.ViewZdoclineTitle_tglRespon}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewZdoclineLabel_zstatususerid}"/>
+                        <h:outputText value="#{zdoclineController.selected.zstatususerid}" title="#{myBundle.ViewZdoclineTitle_zstatususerid}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdoclineLabel_zuserid}"/>
+                        <h:outputText value="#{zdoclineController.selected.zuserid}" title="#{myBundle.ViewZdoclineTitle_zuserid}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdoclineLabel_zstatusCollection}"/>
+                        <h:selectManyMenu converter="zstatusConverter">
+                            <f:selectItems value="#{zdoclineController.selected.zstatusCollection}"
+                                           var="zstatusCollectionItem"
+                                           itemValue="#{zstatusCollectionItem}"
+                                           itemLabel="#{zstatusCollectionItem.descript.toString()}"
+                                           />
+
+                        </h:selectManyMenu>
+
+                        <h:outputText value="#{myBundle.ViewZdoclineLabel_zdocid}"/>
+                        <h:outputText value="#{zdoclineController.selected.zdocid.name}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('ZdoclineViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

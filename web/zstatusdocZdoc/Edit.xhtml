@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ZstatusdocZdocEditDlg" widgetVar="ZstatusdocZdocEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditZstatusdocZdocTitle}" closeOnEscape="true">
+
+            <h:form id="ZstatusdocZdocEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{zstatusdocZdocController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditZstatusdocZdocLabel_zstatusdocZdocPK_zstatusdoccollectionZstatusdocid}" for="zstatusdocZdocPK_zstatusdoccollectionZstatusdocid" />
+                        <h:panelGroup>
+                            <h:outputText id="zstatusdocZdocPK_zstatusdoccollectionZstatusdocid" value="#{zstatusdocZdocController.selected.zstatusdocZdocPK.zstatusdoccollectionZstatusdocid}" />
+                            <p:tooltip for="zstatusdocZdocPK_zstatusdoccollectionZstatusdocid" value="#{zstatusdocZdocController.getComponentMessages('zstatusdocZdocPK_zstatusdoccollectionZstatusdocid', myBundle.EditZstatusdocZdocHelpText_zstatusdocZdocPK_zstatusdoccollectionZstatusdocid)}"/>
+                        </h:panelGroup>
+
+
+                        <h:outputLabel value="#{myBundle.EditZstatusdocZdocLabel_zstatusdocZdocPK_zdoccollectionZdocid}" for="zstatusdocZdocPK_zdoccollectionZdocid" />
+                        <h:panelGroup>
+                            <h:outputText id="zstatusdocZdocPK_zdoccollectionZdocid" value="#{zstatusdocZdocController.selected.zstatusdocZdocPK.zdoccollectionZdocid}" />
+                            <p:tooltip for="zstatusdocZdocPK_zdoccollectionZdocid" value="#{zstatusdocZdocController.getComponentMessages('zstatusdocZdocPK_zdoccollectionZdocid', myBundle.EditZstatusdocZdocHelpText_zstatusdocZdocPK_zdoccollectionZdocid)}"/>
+                        </h:panelGroup>
+
+
+                        <h:outputLabel value="#{myBundle.EditZstatusdocZdocLabel_zstatusdoc}" for="zstatusdoc" />
+                        <h:panelGroup>
+                            <h:outputText id="zstatusdoc" value="#{zstatusdocZdocController.selected.zstatusdoc}" />
+                            <p:tooltip for="zstatusdoc" value="#{zstatusdocZdocController.getComponentMessages('zstatusdoc', myBundle.EditZstatusdocZdocHelpText_zstatusdoc)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zstatusdocZdocController.save}" value="#{myBundle.Save}" update="display,:ZstatusdocZdocListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZstatusdocZdocEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZstatusdocZdocEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
